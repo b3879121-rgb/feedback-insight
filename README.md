@@ -4,7 +4,21 @@
 
 匯入評論 CSV 後，平台會自動分主題、判斷正負評、依「則數 × 負評比例 × 近期變化」排出優先順序，每個結論都能點回原始評論確認。
 
-**實際案例：** 用平台分析街口支付 App Store 最近 500 則公開評論，整理成一頁[洞察報告](docs/index.html)。
+**實際案例：** 用平台分析街口支付 App Store 最近 500 則公開評論，整理成一頁[洞察報告](https://b3879121-rgb.github.io/feedback-insight/)。
+
+![洞察報告：重點數字、星等趨勢與主題分布](docs/images/report_overview.png)
+
+## 洞察報告：四個關鍵發現
+
+每個發現都附上評論摘錄與建議做法。
+
+![四個關鍵發現與建議](docs/images/report_findings.png)
+
+## 平台畫面
+
+匯入 CSV 後的分析儀表板：主題分布、情緒概況、日期趨勢，往下還有優先排序與逐筆原文。
+
+![分析儀表板](docs/images/dashboard.png)
 
 ---
 

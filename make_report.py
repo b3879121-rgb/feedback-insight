@@ -64,7 +64,7 @@ def bar_svg(items: list[tuple[str, float, str]], unit: str, max_value: float, wi
 
 def line_svg(points: list[tuple[str, float]], width: int = 640, height: int = 220) -> str:
     """平均星等折線圖（1–5 星）。"""
-    left, right, top, bottom = 36, 16, 16, 34
+    left, right, top, bottom = 36, 40, 16, 34
     plot_w, plot_h = width - left - right, height - top - bottom
     step = plot_w / max(1, len(points) - 1)
     def y_of(v): return top + (5 - v) / 4 * plot_h
