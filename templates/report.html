@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}列印摘要{% endblock %}{% block content %}
+<div class="print-actions"><button class="button primary" onclick="window.print()">列印 / 存成 PDF</button><a class="button light" href="{{ url_for('batch',batch_id=b.id) }}">返回分析</a></div>
+<div class="report-head"><div class="eyebrow">CUSTOMER SIGNAL / INSIGHT REPORT</div><h1>{{ b.filename }}</h1><p>{{ b.created_at }} · {{ rows|length }} 筆回饋</p></div>
+<div class="report-stat"><div><span>回饋總量</span><b>{{ rows|length }}</b></div><div><span>主題數</span><b>{{ topics|length }}</b></div></div>
+<h2>優先檢視議題</h2>{% for t in topics %}<article class="report-topic"><h3>{{ t.label }} <small>{{ t.score }} / 100</small></h3><p>回饋量 {{ t.count }} · 分數構成：量體 {{ t.components.volume }} / 負向 {{ t.components.negative_share }} / 近期變化 {{ t.components.growth }}</p><p>代表詞：{{ t.terms|join('、') or '人工分類' }}</p><ul>{% for r in t.examples %}<li>「{{ r.body }}」 <small>— {{ r.source }} · {{ r.feedback_date or '無日期' }}</small></li>{% endfor %}</ul></article>{% else %}<p>目前尚無回饋。</p>{% endfor %}
+<h2>判讀限制</h2><p>主題與情緒為自動估算，優先級為方便排序的啟發式分數，不代表客觀風險或商業成效。人工標籤已反映在本摘要中，請回到原始意見抽樣確認。</p>{% endblock %}

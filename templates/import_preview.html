@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}匯入預覽{% endblock %}{% block content %}
+<a class="back" href="{{ url_for('home') }}">← 返回總覽</a><div class="page-heading"><div class="eyebrow">IMPORT REVIEW</div><h1>匯入前，先確認資料</h1><p>{{ payload.filename }} · {{ payload.rows|length }} 筆有效回饋</p></div>
+{% if payload.issues %}<div class="panel warning"><h3>需要留意的資料（{{ payload.issues|length }}）</h3><ul>{% for i in payload.issues %}<li>第 {{ i.row_number }} 列 · {{ i.field }}：{{ i.message }}</li>{% endfor %}</ul></div>{% endif %}
+<div class="panel"><h3>內容預覽</h3><div class="table-scroll"><table><thead><tr><th>日期</th><th>來源</th><th>回饋文字</th></tr></thead><tbody>{% for r in payload.rows[:12] %}<tr><td>{{ r.date or '無日期' }}</td><td>{{ r.source }}</td><td>{{ r.text }}</td></tr>{% endfor %}</tbody></table></div></div>
+<form action="{{ url_for('commit') }}" method="post" class="confirm-row"><input type="hidden" name="token" value="{{ token }}"><span>確認後會將 {{ payload.rows|length }} 筆有效資料存入本機。</span><button class="button primary">確認匯入 →</button></form>{% endblock %}

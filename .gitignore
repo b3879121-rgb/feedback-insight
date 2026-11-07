@@ -1,0 +1,5 @@
+.venv/
+__pycache__/
+instance/
+# 抓下來的真實評論只放本機，不上傳
+reviews/

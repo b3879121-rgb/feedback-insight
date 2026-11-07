@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}總覽{% endblock %}{% block content %}
+<section class="hero"><div><div class="eyebrow">CUSTOMER VOICE / LOCAL WORKSPACE</div><h1>從回饋裡，找到<br><em>值得先處理的事。</em></h1><p>匯入 CSV、整理常見主題與情緒，再沿著每個洞察回到原始意見。</p></div><form class="upload" action="{{ url_for('preview') }}" method="post" enctype="multipart/form-data"><label>匯入回饋資料 <span>CSV · 最大 10 MB</span></label><input type="file" name="file" accept=".csv,text/csv" required><button class="button primary">預覽資料 →</button><small>欄位需包含 date、source、text。匯入前請移除姓名、電話與電子郵件。</small><a class="demo-link" href="{{ url_for('demo_csv') }}">下載模擬資料</a></form></section>
+<section class="section-head"><div><div class="eyebrow">YOUR DATASETS</div><h2>分析批次 <small>{{ batches|length }} 個</small></h2></div></section>
+{% if batches %}<div class="batch-list">{% for b in batches %}<a class="batch-card" href="{{ url_for('batch',batch_id=b.id) }}"><span class="batch-icon">↗</span><span><strong>{{ b.filename }}</strong><small>{{ b.created_at }} · {{ b.record_count }} 筆回饋</small></span><span class="arrow">→</span></a>{% endfor %}</div>{% else %}<div class="empty"><div class="empty-icon">✳</div><h3>先匯入一份回饋資料</h3><p>也可以使用隨附的模擬 CSV，快速體驗分析流程。</p></div>{% endif %}
+<div class="privacy-note"><strong>隱私優先</strong><span>資料只存在這台電腦，不會傳送至雲端或第三方分析服務。</span></div>{% endblock %}
+
